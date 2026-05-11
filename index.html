@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Tool Suite - CalculaPro</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧮</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">CalculaPro</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#herramientas">Herramientas</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#modalContacto">Contacto</a>
+                    </li>
+                    
+                    <li class="nav-item" id="btnLoginNavLi">
+                        <a class="nav-link btn btn-outline-primary btn-sm ms-2" href="#" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                            Iniciar Sesión
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item d-none" id="usuarioInfoLi">
+                        <a class="nav-link" href="#" id="usuarioNombre"></a>
+                    </li>
+                    
+                    <li class="nav-item d-none" id="btnCerrarSesionLi">
+                        <a class="nav-link btn btn-outline-danger btn-sm ms-2" href="#" onclick="cerrarSesion()">
+                            Cerrar Sesión
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="modal fade" id="modalLogin" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title">Iniciar Sesión</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="loginMensaje" class="alert alert-warning d-none"></div>
+                    
+                    <input type="email" id="loginEmail" class="form-control mb-3" placeholder="Email">
+                    <input type="password" id="loginPassword" class="form-control mb-3" placeholder="Contraseña">
+                    
+                    <button class="btn btn-primary w-100" onclick="iniciarSesion()">Iniciar Sesión</button>
+                    
+                    <hr class="bg-secondary">
+                    <p class="text-center mb-0">
+                        ¿No tienes cuenta? 
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalRegistro" class="text-info">
+                            Regístrate aquí
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalRegistro" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title">Registro de Usuario</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="registroMensaje" class="alert alert-warning d-none"></div>
+                    
+                    <input type="text" id="regNombre" class="form-control mb-3" placeholder="Nombre completo">
+                    <input type="email" id="regEmail" class="form-control mb-3" placeholder="Email">
+                    <input type="password" id="regPassword" class="form-control mb-3" placeholder="Contraseña (mínimo 6 caracteres)">
+                    <input type="password" id="regConfirmPassword" class="form-control mb-3" placeholder="Confirmar contraseña">
+                    
+                    <button class="btn btn-success w-100" onclick="registrarUsuario()">Registrarse</button>
+                    
+                    <hr class="bg-secondary">
+                    <p class="text-center mb-0">
+                        ¿Ya tienes cuenta? 
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#modalLogin" class="text-info">
+                            Inicia sesión aquí
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="heroCarousel" class="carousel slide shadow" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1350&q=80" 
+                     class="d-block w-100" alt="Tech">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4 fw-bold">Automatización Pro</h2>
+                    <p>Herramientas de cálculo con precisión quirúrgica.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1350&q=80" 
+                     class="d-block w-100" alt="Network">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2 class="display-4 fw-bold">Infraestructura y Redes</h2>
+                    <p>Optimiza tus procesos y cálculos técnicos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container my-5" id="herramientas">
+        <h1 class="text-center mb-5 text-white fw-bold">Panel de Control</h1>
+        
+        <div class="row g-4">
+            
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-glass text-white p-3 h-100">
+                    <h5 class="card-title border-bottom pb-2">Sumatoria</h5>
+                    <input type="number" id="valor1" class="form-control mb-2" placeholder="Valor 1">
+                    <input type="number" id="valor2" class="form-control mb-3" placeholder="Valor 2">
+                    <button class="btn btn-primary w-100" onclick="sumar()">Calcular</button>
+                    <div id="resultado" class="res-box mt-3 text-center"></div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-glass text-white p-3 h-100">
+                    <h5 class="card-title border-bottom pb-2">Círculo</h5>
+                    <input type="number" id="radio" class="form-control mb-3" placeholder="Radio">
+                    <button class="btn btn-success w-100" onclick="circulo()">Calcular</button>
+                    <div id="area" class="res-box mt-3 small"></div>
+                    <div id="perimetro" class="res-box small"></div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-glass text-white p-3 h-100">
+                    <h5 class="card-title border-bottom pb-2">Velocidad</h5>
+                    <input type="number" id="valor3" class="form-control mb-2" placeholder="Distancia (Km)">
+                    <input type="number" id="valor4" class="form-control mb-3" placeholder="Tiempo (Hrs)">
+                    <div class="d-flex gap-2 mb-2">
+                        <button class="btn btn-outline-info btn-sm flex-fill" onclick="calcular('km')">Km/h</button>
+                        <button class="btn btn-outline-info btn-sm flex-fill" onclick="calcular('ms')">m/s</button>
+                        <button class="btn btn-outline-info btn-sm flex-fill" onclick="calcular('mi')">mi/h</button>
+                    </div>
+                    <div id="area_resultado" class="res-box mt-3 text-center"></div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="card bg-glass text-white p-3 h-100">
+                    <h5 class="card-title border-bottom pb-2">Salud IMC</h5>
+                    <input type="number" id="valor5" class="form-control mb-2" placeholder="Peso (kg)" step="0.1">
+                    <input type="number" id="valor6" class="form-control mb-3" placeholder="Altura (m)" step="0.01">
+                    <button class="btn btn-warning w-100 text-white" onclick="calculo_imc()">Calcular IMC</button>
+                    <div id="imc_final" class="res-box mt-3 text-center"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="container mt-5">
+        <div class="card bg-glass text-white">
+            <div class="card-header border-secondary bg-transparent">
+                <h3 class="mb-0">Historial de Cálculos</h3>
+                <small class="text-muted">Tus cálculos se guardan automáticamente en la nube</small>
+            </div>
+            <div class="card-body">
+                <div id="historialContainer" style="max-height: 400px; overflow-y: auto;">
+                    <div class="text-center text-muted py-4">
+                        <div class="spinner-border text-info" role="status">
+                            <span class="visually-hidden">Cargando...</span>
+                        </div>
+                        <p class="mt-2">Cargando historial...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalContacto" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title">Contacto Soporte</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Proyecto desarrollado para el área de Informática y Redes.</p>
+                    <p><strong>Tecnologías utilizadas:</strong></p>
+                    <ul>
+                        <li>Frontend: HTML5, CSS3, JavaScript</li>
+                        <li>Backend: Azure Functions (Node.js)</li>
+                        <li>Base de datos: Azure SQL Database</li>
+                    </ul>
+                    <hr>
+                    <p>Email: soporte@calculapro.com</p>
+                    <p>GitHub: github.com/calculapro</p>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer bg-dark text-white text-center py-4 mt-5 shadow-lg">
+        <div class="container">
+            <p class="mb-0">2026 CalculaPro - Todos los derechos reservados.</p>
+            <small class="text-muted">Sistema de cálculos con almacenamiento en la nube</small>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
